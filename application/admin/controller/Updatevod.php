@@ -54,7 +54,7 @@ class Updatevod extends Base
 
 
       echo "<pre>";
-      print_r($max_vod_id);
+      print_r($res);
       exit();
     }
 
