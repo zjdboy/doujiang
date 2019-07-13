@@ -138,7 +138,7 @@ return array (
     'watermark_color' => '#FF0000',
     'protocol' => 'http',
     'mode' => 'local',
-    'remoteurl' => 'http://static.yg.cn/',
+    'remoteurl' => 'https://static.gugejiejing.com/',
     'api' => 
     array (
       'ftp' => 
@@ -301,7 +301,7 @@ return array (
       'status' => '1',
       'charge' => '0',
       'pagesize' => '20',
-      'imgurl' => 'http://static.yg.cn/',
+      'imgurl' => 'https://static.gugejiejing.com/',
       'typefilter' => '',
       'datafilter' => ' vod_status=1',
       'cachetime' => '',
@@ -313,7 +313,7 @@ return array (
       'status' => '1',
       'charge' => '0',
       'pagesize' => '20',
-      'imgurl' => 'http://static.yg.cn/',
+      'imgurl' => 'https://static.gugejiejing.com/',
       'typefilter' => '',
       'datafilter' => 'art_status=1',
       'cachetime' => '',
@@ -324,7 +324,7 @@ return array (
       'status' => '1',
       'charge' => '0',
       'pagesize' => '20',
-      'imgurl' => 'http://static.yg.cn/',
+      'imgurl' => 'https://static.gugejiejing.com/',
       'datafilter' => 'actor_status=1',
       'cachetime' => '',
       'auth' => '',
