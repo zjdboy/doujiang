@@ -24,7 +24,7 @@ class Updatevod extends Base
       $res = model('Vod')->listData($where,$order);
       $max_vod_id = $res['list'][0]['vod_id'];
 
-      for ($i=$max_vod_id+1; $i < $max_vod_id+1+20; $i++) {
+      for ($i=$max_vod_id+1; $i < $max_vod_id+1+100; $i++) {
         $ret = $this->get_vod($i);
         $ret['info']['vod_id'] = 0;
         if($ret['info']['vod_id'] > 0){
@@ -48,7 +48,7 @@ class Updatevod extends Base
           $data['vod_isend'] = $ret['info']['vod_isend'];
           $data['vod_content'] = $ret['info']['vod_content'];
           $data['vod_play_url'] = $ret['info']['vod_play_url'];
-          model('Vod')->saveData($data);  
+          model('Vod')->saveData($data);
         }
       }
 
