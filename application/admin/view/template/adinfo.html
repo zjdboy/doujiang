@@ -1,0 +1,245 @@
+{include file="../../../application/admin/view/public/head" /}
+<div class="page-container">
+    <form class="layui-form layui-form-pane" method="post" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题：</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" value="{$ad_title}" placeholder="标题" id="ad_title" name="ad_title" {if condition="$ad_title neq ''"}readonly="readonly"{/if}>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">广告位：</label>
+            <div class="layui-input-block">
+              <select name="ad_type">
+                  <option value="">选择推荐</option>
+                  <option value="1" {if condition="$param['ad_type'] eq '1'"}selected {/if}>启动页广告位(单)</option>
+
+                  <option value="14" {if condition="$param['ad_type'] eq '14'"}selected {/if}>首页轮播广告位(多)</option>
+
+                  <option value="2" {if condition="$param['ad_type'] eq '2'"}selected {/if}>首页热播广告位(单)</option>
+                  <option value="3" {if condition="$param['ad_type'] eq '3'"}selected {/if}>首页专题1(单)</option>
+                  <option value="4" {if condition="$param['ad_type'] eq '4'"}selected {/if}>首页专题2(单)</option>
+                  <option value="5" {if condition="$param['ad_type'] eq '5'"}selected {/if}>首页专题3(单)</option>
+                  <option value="6" {if condition="$param['ad_type'] eq '6'"}selected {/if}>首页专题4(单)</option>
+                  <option value="7" {if condition="$param['ad_type'] eq '7'"}selected {/if}>首页专题5(单)</option>
+                  <option value="8" {if condition="$param['ad_type'] eq '8'"}selected {/if}>首页专题6(单)</option>
+                  <option value="9" {if condition="$param['ad_type'] eq '9'"}selected {/if}>首页专题7(单)</option>
+                  <option value="10" {if condition="$param['ad_type'] eq '10'"}selected {/if}>首页专题8(单)</option>
+                  <option value="11" {if condition="$param['ad_type'] eq '11'"}selected {/if}>首页专题9(单)</option>
+                  <option value="12" {if condition="$param['ad_type'] eq '12'"}selected {/if}>首页专题10(单)</option>
+
+                  <option value="13" {if condition="$param['ad_type'] eq '13'"}selected {/if}>详情页广告位(单)</option>
+
+                  <option value="15" {if condition="$param['ad_type'] eq '15'"}selected {/if}>猜你喜欢1(单)</option>
+                  <option value="16" {if condition="$param['ad_type'] eq '16'"}selected {/if}>猜你喜欢2(单)</option>
+                  <option value="17" {if condition="$param['ad_type'] eq '17'"}selected {/if}>猜你喜欢3(单)</option>
+                  <option value="18" {if condition="$param['ad_type'] eq '18'"}selected {/if}>猜你喜欢4(单)</option>
+                  <option value="19" {if condition="$param['ad_type'] eq '19'"}selected {/if}>猜你喜欢5(单)</option>
+                  <option value="20" {if condition="$param['ad_type'] eq '20'"}selected {/if}>猜你喜欢6(单)</option>
+                  <option value="21" {if condition="$param['ad_type'] eq '21'"}selected {/if}>猜你喜欢7(单)</option>
+                  <option value="22" {if condition="$param['ad_type'] eq '22'"}selected {/if}>猜你喜欢8(单)</option>
+                  <option value="23" {if condition="$param['ad_type'] eq '23'"}selected {/if}>猜你喜欢9(单)</option>
+                  <option value="24" {if condition="$param['ad_type'] eq '24'"}selected {/if}>猜你喜欢10(单)</option>
+              </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">广告URL：</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" value="{$ad_url}" placeholder="URL" id="ad_url" name="ad_url" {if condition="$ad_url neq ''"}readonly="readonly"{/if}>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">广告图片：</label>
+            <div class="layui-input-inline w500 upload">
+                <input type="text" class="layui-input upload-input" style="max-width:100%;" value="{$info.ad_img}" placeholder="" id="ad_img" name="ad_img">
+            </div>
+            <div class="layui-input-inline ">
+                <button type="button" class="layui-btn layui-upload" lay-data="{data:{thumb:1,thumb_class:'upload-thumb'}}" id="upload1">上传图片</button>
+            </div>
+        </div>
+
+        <div class="layui-form-item center">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="formSubmit" data-child="true">保 存</button>
+                <button class="layui-btn layui-btn-warm" type="reset">还 原</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+{include file="../../../application/admin/view/public/foot" /}
+
+<script type="text/javascript">
+
+    layui.use(['form','upload', 'layer'], function () {
+        // 操作对象
+        var form = layui.form
+                , layer = layui.layer
+                , $ = layui.jquery
+                , upload = layui.upload;;
+
+        // 验证
+        form.verify({
+            art_name: function (value) {
+                if (value == "") {
+                    return "请输入专题名称";
+                }
+            }
+        });
+
+        $(document).on("click", ".extend", function(){
+            $id = $(this).attr('data-id');
+            if($id == 'art_class'||$id == 'art_keywords'){
+                $val = $("input[id='"+$id+"']").val();
+                if($val!=''){
+                    $val = $val+',';
+                }
+                if($val.indexOf($(this).text())>-1){
+                    return;
+                }
+                $("input[id='"+$id+"']").val($val+$(this).text());
+            }else{
+                $("input[id='"+$id+"']").val($(this).text());
+            }
+        });
+
+
+        form.on('select(type_id)', function(data){
+            getExtend(data.value);
+        });
+
+        upload.render({
+            elem: '.layui-upload'
+            ,url: "{:url('upload/upload')}?flag=art"
+            ,method: 'post'
+            ,before: function(input) {
+                layer.msg('文件上传中...', {time:3000000});
+            },done: function(res, index, upload) {
+                var obj = this.item;
+                if (res.code == 0) {
+                    layer.msg(res.msg);
+                    return false;
+                }
+                layer.closeAll();
+                var input = $(obj).parent().parent().find('.upload-input');
+                if ($(obj).attr('lay-type') == 'image') {
+                    input.siblings('img').attr('src', res.data.file).show();
+                }
+                input.val(res.data.file);
+
+                if(res.data.thumb_class !=''){
+                    $('.'+ res.data.thumb_class).val(res.data.thumb[0].file);
+                }
+            }
+        });
+
+        $('.upload-input').hover(function (e){
+            var e = window.event || e;
+            var imgsrc = $(this).val();
+            if(imgsrc.trim()==""){ return; }
+            var left = e.clientX+document.body.scrollLeft+20;
+            var top = e.clientY+document.body.scrollTop+20;
+            $(".showpic").css({left:left,top:top,display:""});
+            if(imgsrc.indexOf('://')<0){ imgsrc = ROOT_PATH + '/' + imgsrc;	} else{ imgsrc = imgsrc.replace('mac:','http:'); }
+            $(".showpic_img").attr("src", imgsrc);
+        },function (e){
+            $(".showpic").css("display","none");
+        });
+
+
+        $("#btn_rnd").click(function(){
+            $("#art_hits").val( rndNum(5000,9999) );
+            $("#art_hits_month").val( rndNum(1000,4999) );
+            $("#art_hits_week").val( rndNum(300,999) );
+            $("#art_hits_day").val( rndNum(1,299) );
+            $("#art_up").val( rndNum(1,999) );
+            $("#art_down").val( rndNum(1,999) );
+            $("#art_score").val( rndNum(10) );
+            $("#art_score_all").val( rndNum(1000) );
+            $("#art_score_num").val( rndNum(100) );
+        });
+
+
+
+        $('.contents').on('click','.j-editor-clear',function(){
+            var datai = $(this).parent().parent().attr('data-i');
+            editor_setContent(ueArray[datai],'');
+        });
+        $('.contents').on('click','.j-editor-remove',function(){
+            var datai = $(this).parent().parent().attr('data-i');
+            $(this).parent().parent().remove();
+            delete ueArray[datai];
+        });
+        $('.contents').on('click','.j-editor-up',function(){
+            var current = $(this).parent().parent();
+            var current_index = current.index();
+            var current_i = current.attr('data-i');
+            var prev = current.prev();
+            var prev_i = prev.attr('data-i');
+            if(current_index>0){
+                var current_txt = editor_getContent(ueArray[current_i]);
+                var prev_txt = editor_getContent(ueArray[prev_i]);
+                editor_setContent(ueArray[current_i],prev_txt);
+                editor_setContent(ueArray[prev_i],current_txt);
+            }
+        });
+        $('.contents').on('click','.j-editor-down',function(){
+            var current = $(this).parent().parent();
+            var current_index = current.index();
+            var current_i = current.attr('data-i');
+            var next = current.next();
+            var next_i = next.attr('data-i');
+
+            if(next.length>0){
+                var current_txt = editor_getContent(ueArray[current_i]);
+                var prev_txt = editor_getContent(ueArray[next_i]);
+
+                editor_setContent(ueArray[current_i],prev_txt);
+                editor_setContent(ueArray[next_i],current_txt);
+            }
+        });
+
+        $('.j-editor-add').on('click',function(){
+            content_arr_len++;
+            var tpl='<div class="layui-form-item" data-i="'+content_arr_len+'"><label class="layui-form-label">分页内容'+(content_arr_len)+'：</label><div class="layui-input-inline w200"><input type="text" name="art_title[]" class="layui-input" placeholder="页标题"></div><div class="layui-input-inline w200"><input type="text" name="art_note[]" class="layui-input" placeholder="页备注"></div><div class="layui-input-inline w200 p10"><a href="javascript:void(0)" class="j-editor-clear">清空</a>&nbsp;<a href="javascript:void(0)" class="j-editor-remove">删除</a>&nbsp;<a href="javascript:void(0)" class="j-editor-up">上移</a>&nbsp;<a href="javascript:void(0)" class="j-editor-down">下移</a>&nbsp;<br></div><div class="p10 m20"></div><div class="layui-input-block"><textarea id="art_content'+(content_arr_len)+'" name="art_content[]" type="text/plain" style="width:99%;height:250px"></textarea></div></div>';
+            $(".contents").append(tpl);
+            ueArray[content_arr_len] = editor_getEditor( 'art_content'+content_arr_len );
+
+        });
+
+        if(content_arr_len==0){
+            $('.j-editor-add').click();
+        }
+    });
+
+    function getExtend(id){
+        $.post("{:url('type/extend')}", {id:id}, function(res) {
+
+            if (res.code == 1) {
+                $.each(res.data, function(key, value){
+                    $('.art_'+key+"_label").html('');
+                    if(value != ''){
+                        $.each(value, function(key2, value2){
+                            $(".art_"+key+"_label").append('<a class="layui-btn layui-btn-xs extend" href="javascript:;" data-id="art_'+key+'">'+value2+'</a>');
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    {if condition="$info.art_id gt 0"}
+    setTimeout(function () {
+        getExtend('{$info.type_id}')
+    },1000);
+    {/if}
+
+</script>
+
+
+</body>
+</html>

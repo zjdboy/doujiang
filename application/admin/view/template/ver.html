@@ -1,0 +1,78 @@
+{include file="../../../application/admin/view/public/head" /}
+<div class="page-container p10">
+    <div class="my-btn-box lh30" >
+        <div class="layui-btn-group fl">
+            <a data-full="1" data-href="{:url('verinfo')}" class="layui-btn layui-btn-primary j-iframe"><i class="layui-icon">&#xe654;</i>添加</a>
+        </div>
+        <div class="page-filter fr" >
+
+        </div>
+    </div>
+
+    <form class="layui-form layui-form-pane" action="">
+        <table class="layui-table mt10">
+        <thead>
+        <tr>
+            <th> ID </th>
+            <th width="150">版本号</th>
+            <th width="150">类型</th>
+            <th width="150">下载地址URL</th>
+            <th width="150">升级内容</th>
+            <th width="200">更新时间</th>
+            <th width="130">操作</th>
+        </tr>
+        </thead>
+            {volist name="list" id="vo"}
+            <tr>
+
+                <th>{$vo.id}</a></th>
+                <td>{$vo.ver}</td>
+                <td>{if $vo.type == '1'}苹果{else}安卓{/if}</td>
+                <td>{$vo.down_url}</td>
+                <td>{$vo.content}</td>
+                <td>{$vo.uptime|mac_day=color}</td>
+                <td>
+                    <a class="layui-badge-rim j-tr-del" data-href="{:url('verdel')}?id={$vo.id}" href="javascript:;" title="删除">删除</a>
+                </td>
+            </tr>
+            {/volist}
+        </tbody>
+    </table>
+    </form>
+</div>
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript" src="__STATIC__/js/jquery.clipboard.js"></script>
+<script type="text/javascript">
+    var clipboard = new ClipboardJS('.j-clipboard');
+    clipboard.on('success', function(e) {
+       layer.msg('复制成功');
+    });
+
+    function data_info(path,name)
+    {
+        var index = layer.open({
+            type: 2,
+            shade:0.4,
+            title: '编辑数据',
+            content: "{:url('template/info')}?fpath="+path+'&fname='+name
+        });
+
+        layer.full(index);
+    }
+
+    function data_del(id)
+    {
+        if(!id){
+            id  = checkIds('fname[]');
+        }
+        layer.confirm('确认要删除吗？', function (index) {
+            location.href = "{:url('template/del')}?fname=" + id;
+        });
+    }
+
+    $(function(){
+
+    });
+</script>
+</body>
+</html>

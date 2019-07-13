@@ -1,0 +1,106 @@
+{include file="../../../application/admin/view/public/head" /}
+<div class="page-container p10">
+    <div class="my-btn-box lh30" >
+        <div class="layui-btn-group fl">
+            <a data-full="1" data-href="{:url('adinfo')}" class="layui-btn layui-btn-primary j-iframe"><i class="layui-icon">&#xe654;</i>添加</a>
+        </div>
+        <div class="page-filter fr" >
+
+        </div>
+    </div>
+
+    <form class="layui-form layui-form-pane" action="">
+        <table class="layui-table mt10">
+        <thead>
+        <tr>
+            <th>广告 ID</th>
+            <th width="150">广告位</th>
+            <th width="150">标题</th>
+            <th width="150">广告URL</th>
+            <th width="150">广告图片</th>
+            <th width="200">增加时间</th>
+            <th width="130">操作</th>
+        </tr>
+        </thead>
+            {volist name="list" id="vo"}
+            <tr>
+
+                <th>{$vo.ad_id}</a></th>
+                <td>
+                  {if $vo.ad_type == '1'}启动页广告位(单)
+                  {elseif $vo.ad_type == '2'}首页热播广告位(单)
+                  {elseif $vo.ad_type == '3'}首页专题1(单)
+                  {elseif $vo.ad_type == '4'}首页专题2(单)
+                  {elseif $vo.ad_type == '5'}首页专题3(单)
+                  {elseif $vo.ad_type == '6'}首页专题4(单)
+                  {elseif $vo.ad_type == '7'}首页专题5(单)
+                  {elseif $vo.ad_type == '8'}首页专题6(单)
+                  {elseif $vo.ad_type == '9'}首页专题7(单)
+                  {elseif $vo.ad_type == '10'}首页专题8(单)
+                  {elseif $vo.ad_type == '11'}首页专题9(单)
+                  {elseif $vo.ad_type == '12'}首页专题10(单)
+                  {elseif $vo.ad_type == '13'}详情页广告位(单)
+                  {elseif $vo.ad_type == '14'}首页轮播广告位(多)
+
+                  {elseif $vo.ad_type == '15'}猜你喜欢1(多)
+                  {elseif $vo.ad_type == '16'}猜你喜欢2(多)
+                  {elseif $vo.ad_type == '17'}猜你喜欢3(多)
+                  {elseif $vo.ad_type == '18'}猜你喜欢4(多)
+                  {elseif $vo.ad_type == '19'}猜你喜欢5(多)
+                  {elseif $vo.ad_type == '20'}猜你喜欢6(多)
+                  {elseif $vo.ad_type == '21'}猜你喜欢7(多)
+                  {elseif $vo.ad_type == '22'}猜你喜欢8(多)
+                  {elseif $vo.ad_type == '23'}猜你喜欢9(多)
+                  {elseif $vo.ad_type == '24'}猜你喜欢10(多)
+
+                  {/if}
+                </td>
+                <td>{$vo.ad_title}</td>
+                <td>{$vo.ad_url}</td>
+                <td>{$vo.ad_img}</td>
+                <td>{$vo.ad_time|mac_day=color}</td>
+                <td>
+                    <a class="layui-badge-rim j-tr-del" data-href="{:url('addel')}?id={$vo.ad_id}" href="javascript:;" title="删除">删除</a>
+                </td>
+            </tr>
+            {/volist}
+        </tbody>
+    </table>
+    </form>
+</div>
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript" src="__STATIC__/js/jquery.clipboard.js"></script>
+<script type="text/javascript">
+    var clipboard = new ClipboardJS('.j-clipboard');
+    clipboard.on('success', function(e) {
+       layer.msg('复制成功');
+    });
+
+    function data_info(path,name)
+    {
+        var index = layer.open({
+            type: 2,
+            shade:0.4,
+            title: '编辑数据',
+            content: "{:url('template/info')}?fpath="+path+'&fname='+name
+        });
+
+        layer.full(index);
+    }
+
+    function data_del(id)
+    {
+        if(!id){
+            id  = checkIds('fname[]');
+        }
+        layer.confirm('确认要删除吗？', function (index) {
+            location.href = "{:url('template/del')}?fname=" + id;
+        });
+    }
+
+    $(function(){
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+    "name": "awgroup/youtiaocms",
+    "description": "油条cm视频cms系统",
+    "type": "project",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Bot-t",
+            "email": "tangb7420@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "topthink/framework": "5.0.*",
+        "topthink/think-captcha": "1.0.*",
+        "topthink/think-image": "1.0.*",
+        "topthink/think-helper": "1.0.*",
+        "topthink/think-queue": "1.1.*",
+        "karsonzhang/fastadmin-addons": "1.1.*",
+        "firebase/php-jwt": "5.0.*",
+        "nexmo/client": "^1.8",
+        "aferrandini/phpqrcode": "1.0.1",
+        "jpush/jpush": "^3.5",
+        "twilio/sdk": "^5.34"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "application"
+        }
+    },
+    "extra": {
+        "think-path": "thinkphp"
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}
