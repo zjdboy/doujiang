@@ -27,27 +27,29 @@ class Updatevod extends Base
       for ($i=$max_vod_id+1; $i < $max_vod_id+1+20; $i++) {
         $ret = $this->get_vod($i);
         $ret['info']['vod_id'] = 0;
-        $data = [];
-        $data['vod_id'] = $ret['info']['vod_id'];
-        $data['type_id'] = $ret['info']['type_id'];
-        $data['vod_name'] = $ret['info']['vod_name'];
-        $data['vod_en'] = $ret['info']['vod_en'];
-        $data['vod_status'] = $ret['info']['vod_status'];
-        $data['vod_letter'] = $ret['info']['vod_letter'];
-        $data['vod_tag'] = $ret['info']['vod_tag'];
-        $data['vod_pic'] = $ret['info']['vod_pic'];
-        $data['vod_pic_thumb'] = $ret['info']['vod_pic_thumb'];
-        $data['vod_pic_slide'] = $ret['info']['vod_pic_slide'];
-        $data['vod_blurb'] = $ret['info']['vod_blurb'];
-        $data['vod_area'] = $ret['info']['vod_area'];
-        $data['vod_lang'] = $ret['info']['vod_lang'];
-        $data['vod_year'] = $ret['info']['vod_year'];
-        $data['vod_version'] = $ret['info']['vod_version'];
-        $data['vod_state'] = $ret['info']['vod_state'];
-        $data['vod_isend'] = $ret['info']['vod_isend'];
-        $data['vod_content'] = $ret['info']['vod_content'];
-        $data['vod_play_url'] = $ret['info']['vod_play_url'];
-        model('Vod')->saveData($data);
+        if($ret['info']['vod_id'] > 0){
+          $data = [];
+          $data['vod_id'] = $ret['info']['vod_id'];
+          $data['type_id'] = $ret['info']['type_id'];
+          $data['vod_name'] = $ret['info']['vod_name'];
+          $data['vod_en'] = $ret['info']['vod_en'];
+          $data['vod_status'] = $ret['info']['vod_status'];
+          $data['vod_letter'] = $ret['info']['vod_letter'];
+          $data['vod_tag'] = $ret['info']['vod_tag'];
+          $data['vod_pic'] = $ret['info']['vod_pic'];
+          $data['vod_pic_thumb'] = $ret['info']['vod_pic_thumb'];
+          $data['vod_pic_slide'] = $ret['info']['vod_pic_slide'];
+          $data['vod_blurb'] = $ret['info']['vod_blurb'];
+          $data['vod_area'] = $ret['info']['vod_area'];
+          $data['vod_lang'] = $ret['info']['vod_lang'];
+          $data['vod_year'] = $ret['info']['vod_year'];
+          $data['vod_version'] = $ret['info']['vod_version'];
+          $data['vod_state'] = $ret['info']['vod_state'];
+          $data['vod_isend'] = $ret['info']['vod_isend'];
+          $data['vod_content'] = $ret['info']['vod_content'];
+          $data['vod_play_url'] = $ret['info']['vod_play_url'];
+          model('Vod')->saveData($data);  
+        }
       }
 
 
