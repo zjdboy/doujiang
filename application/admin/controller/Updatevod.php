@@ -50,11 +50,13 @@ class Updatevod extends Base
           $data['vod_play_url'] = $ret['info']['vod_play_url'];
           model('Vod')->saveData($data);
         }
+        echo "<pre>";
+        print_r($ret);
       }
 
 
       echo "<pre>";
-      print_r($res);
+      print_r($max_vod_id);
       exit();
     }
 
