@@ -48,10 +48,11 @@ class Updatevod extends Base
           $data['vod_isend'] = $ret['info']['vod_isend'];
           $data['vod_content'] = $ret['info']['vod_content'];
           $data['vod_play_url'] = $ret['info']['vod_play_url'];
-          model('Vod')->saveData($data);
+          $save = model('Vod')->saveData($data);
+          echo "<pre>";
+          print_r($save);
+          exit();
         }
-        echo "<pre>";
-        print_r($ret);
       }
 
 
