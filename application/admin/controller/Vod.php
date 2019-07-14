@@ -220,7 +220,7 @@ class Vod extends Base
             if(!empty($param['weekday'])){
                 $where['vod_weekday'] = ['like','%'.$param['weekday'].'%'];
             }
-            
+
             if(!empty($param['player'])){
                 if($param['player']=='no'){
                     $where['vod_play_from'] = ['eq',''];

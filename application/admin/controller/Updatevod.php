@@ -26,11 +26,14 @@ class Updatevod extends Base
 
       for ($i=$max_vod_id+1; $i < $max_vod_id+1+100; $i++) {
         $ret = $this->get_vod($i);
-        if($ret['info']['vod_id'] > 0){
+        if($ret['code'] == 1){
+          // echo "<pre>";
+          // print_r($ret);
+          // exit();
           $ret['info']['vod_id'] = 0;
           $data = [];
           $data['vod_id'] = $ret['info']['vod_id'];
-          $data['type_id'] = 20;
+          $data['type_id'] = rand(20,30);
           $data['type_id_1'] = $ret['info']['type_id_1'];
           $data['vod_name'] = $ret['info']['vod_name'];
           $data['vod_en'] = $ret['info']['vod_en'];
@@ -48,7 +51,10 @@ class Updatevod extends Base
           $data['vod_state'] = $ret['info']['vod_state'];
           $data['vod_isend'] = $ret['info']['vod_isend'];
           $data['vod_content'] = $ret['info']['vod_content'];
-          $data['vod_play_url'] = $ret['info']['vod_play_url'];
+          $data['vod_play_from'][] = $ret['info']['vod_play_from'];
+          $data['vod_play_server'][] = $ret['info']['vod_play_server'];
+          $data['vod_play_note'][] = $ret['info']['vod_play_note'];
+          $data['vod_play_url'][] = $ret['info']['vod_play_url'];
           $save = model('Vod')->saveData($data);
           // echo "<pre>";
           // print_r($save);
