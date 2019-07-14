@@ -33,7 +33,7 @@ class Updatevod extends Base
           $ret['info']['vod_id'] = 0;
           $data = [];
           $data['vod_id'] = $ret['info']['vod_id'];
-          $data['type_id'] = rand(20,30);
+          $data['type_id'] = rand(22,30);
           $data['type_id_1'] = $ret['info']['type_id_1'];
           $data['vod_name'] = $ret['info']['vod_name'];
           $data['vod_en'] = $ret['info']['vod_en'];
